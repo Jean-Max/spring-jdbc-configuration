@@ -1,3 +1,2 @@
-com\viseo\config\db\HsqlDataSource.class
-com\viseo\config\SpringRootConfig.class
-com\viseo\servlet\MyWebInitializer.class
+com\viseo\formation\config\MediaPlayerConfig.class
+com\viseo\formation\RunApplication.class
