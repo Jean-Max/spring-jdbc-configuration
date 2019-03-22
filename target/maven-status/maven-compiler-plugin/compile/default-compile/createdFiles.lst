@@ -1,0 +1,3 @@
+com\viseo\config\db\HsqlDataSource.class
+com\viseo\config\SpringRootConfig.class
+com\viseo\servlet\MyWebInitializer.class
