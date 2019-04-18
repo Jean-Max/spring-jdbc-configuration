@@ -12,13 +12,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration(classes = {MediaPlayerConfig.class}) // Tells Spring to load the configuration
 public class JavaConfigTest {
 
-
-    @Autowired
-    @Qualifier("randomMediaPlayer")
-    private String randomMediaPlayer;
-
     @Test
-    public void media_player_should_play_media_randomly(){
+    public void should_test_configuration (){
 
     }
 }

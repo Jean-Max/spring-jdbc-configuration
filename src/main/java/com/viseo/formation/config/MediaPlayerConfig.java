@@ -41,15 +41,6 @@ public class MediaPlayerConfig {
     private String SQL_SCRIPT_INSERT_DATA;
 
     @Bean
-    public static PropertySourcesPlaceholderConfigurer properties(){
-        PropertySourcesPlaceholderConfigurer pspc = new PropertySourcesPlaceholderConfigurer();
-        Resource[] resources = new ClassPathResource[]{new ClassPathResource("application.properties")};
-        pspc.setLocations(resources);
-        pspc.setIgnoreUnresolvablePlaceholders(true);
-        return pspc;
-    }
-
-    @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = initDataSource();
         ResourceDatabasePopulator resourceDatabasePopulator = new ResourceDatabasePopulator();
@@ -58,13 +49,6 @@ public class MediaPlayerConfig {
         }
         DatabasePopulatorUtils.execute(resourceDatabasePopulator, dataSource);
         return dataSource;
-    }
-
-    @Bean
-    public JdbcTemplate jdbcTemplate() {
-        JdbcTemplate jdbcTemplate = new JdbcTemplate();
-        jdbcTemplate.setDataSource(dataSource());
-        return jdbcTemplate;
     }
 
     private DriverManagerDataSource initDataSource () {
