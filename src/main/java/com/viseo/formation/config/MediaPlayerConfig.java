@@ -18,36 +18,26 @@ import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
 
-@Configuration
-@PropertySource("classpath:application.properties")
+
 public class MediaPlayerConfig {
 
-    @Value("${hsql.jdbc.driver}")
+    
     private String HSQLDB_JDBC_DRIVER;
 
-    @Value("${hsql.url}")
+
     private String HSQLDB_URL;
 
-    @Value("${user.login}")// remplace la valeur dans le fichier properties par le nom du user dans c:utilisateur
+
     private String USERNAME;
 
-    @Value("${password}")
+
     private String PASSWORD;
 
-    @Value("${sql.script.create.db}")
+
     private String SQL_SCRIPT_CREATE_DB;
 
-    @Value("${sql.script.insert.data}")
-    private String SQL_SCRIPT_INSERT_DATA;
 
-    @Bean
-    public static PropertySourcesPlaceholderConfigurer properties(){
-        PropertySourcesPlaceholderConfigurer pspc = new PropertySourcesPlaceholderConfigurer();
-        Resource[] resources = new ClassPathResource[]{new ClassPathResource("application.properties")};
-        pspc.setLocations(resources);
-        pspc.setIgnoreUnresolvablePlaceholders(true);
-        return pspc;
-    }
+    private String SQL_SCRIPT_INSERT_DATA;
 
     @Bean
     public DataSource dataSource() {
@@ -60,19 +50,9 @@ public class MediaPlayerConfig {
         return dataSource;
     }
 
-    @Bean
-    public JdbcTemplate jdbcTemplate() {
-        JdbcTemplate jdbcTemplate = new JdbcTemplate();
-        jdbcTemplate.setDataSource(dataSource());
-        return jdbcTemplate;
-    }
-
     private DriverManagerDataSource initDataSource () {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(HSQLDB_JDBC_DRIVER);
-        dataSource.setUrl(HSQLDB_URL);
-        dataSource.setUsername(USERNAME);
-        dataSource.setPassword(PASSWORD);
+
         return dataSource;
     }
 
@@ -81,8 +61,7 @@ public class MediaPlayerConfig {
      */
     private List<Resource> initSchema () {
         List<Resource> resources = new ArrayList<>();
-        resources.add(new ClassPathResource(SQL_SCRIPT_CREATE_DB));
-        resources.add(new ClassPathResource(SQL_SCRIPT_INSERT_DATA));
+
         return resources;
     }
 
