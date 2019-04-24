@@ -5,10 +5,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jdbc.datasource.init.DatabasePopulatorUtils;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
@@ -23,22 +21,22 @@ import java.util.List;
 public class MediaPlayerConfig {
 
     @Value("${hsql.jdbc.driver}")
-    private String HSQLDB_JDBC_DRIVER;
+    private String hsqldbJdbcDriver;
 
     @Value("${hsql.url}")
-    private String HSQLDB_URL;
+    private String hsqldbUrl;
 
     @Value("${user.login}")// remplace la valeur dans le fichier properties par le nom du user dans c:utilisateur
-    private String USERNAME;
+    private String username;
 
     @Value("${password}")
-    private String PASSWORD;
+    private String password;
 
     @Value("${sql.script.create.db}")
-    private String SQL_SCRIPT_CREATE_DB;
+    private String sqlScriptCreateDb;
 
     @Value("${sql.script.insert.data}")
-    private String SQL_SCRIPT_INSERT_DATA;
+    private String sqlScriptInsertData;
 
     @Bean
     public DataSource dataSource() {
@@ -53,10 +51,10 @@ public class MediaPlayerConfig {
 
     private DriverManagerDataSource initDataSource () {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(HSQLDB_JDBC_DRIVER);
-        dataSource.setUrl(HSQLDB_URL);
-        dataSource.setUsername(USERNAME);
-        dataSource.setPassword(PASSWORD);
+        dataSource.setDriverClassName(hsqldbJdbcDriver);
+        dataSource.setUrl(hsqldbUrl);
+        dataSource.setUsername(username);
+        dataSource.setPassword(password);
         return dataSource;
     }
 
@@ -65,8 +63,8 @@ public class MediaPlayerConfig {
      */
     private List<Resource> initSchema () {
         List<Resource> resources = new ArrayList<>();
-        resources.add(new ClassPathResource(SQL_SCRIPT_CREATE_DB));
-        resources.add(new ClassPathResource(SQL_SCRIPT_INSERT_DATA));
+        resources.add(new ClassPathResource(sqlScriptCreateDb));
+        resources.add(new ClassPathResource(sqlScriptInsertData));
         return resources;
     }
 
