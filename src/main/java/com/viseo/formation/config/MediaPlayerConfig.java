@@ -22,22 +22,22 @@ import java.util.List;
 public class MediaPlayerConfig {
 
     
-    private String HSQLDB_JDBC_DRIVER;
+    private String hsqldbJdbcDriver;
 
 
-    private String HSQLDB_URL;
+    private String hsqldbUrl;
 
 
-    private String USERNAME;
+    private String username;
 
 
-    private String PASSWORD;
+    private String password;
 
 
-    private String SQL_SCRIPT_CREATE_DB;
+    private String sqlScriptCreateDb;
 
 
-    private String SQL_SCRIPT_INSERT_DATA;
+    private String sqlScriptInsertData;
 
     @Bean
     public DataSource dataSource() {
